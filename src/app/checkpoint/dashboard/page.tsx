@@ -6,6 +6,7 @@ import { Icons } from "@/components/icons";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useEffect, useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { Scan } from "lucide-react";
 
 export default function CheckpointDashboard() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -56,7 +57,7 @@ export default function CheckpointDashboard() {
           )
           }
 
-          <Button variant="outline">Scan Code <Icons.scan className="ml-2 h-4 w-4"/></Button>
+          <Button variant="outline">Scan Code <Scan className="ml-2 h-4 w-4"/></Button>
           {/* Add components for displaying visitor info and granting/denying access */}
         </CardContent>
       </Card>
