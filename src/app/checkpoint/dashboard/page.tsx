@@ -7,11 +7,16 @@ import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { useEffect, useRef, useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { Scan } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+
+const placeholderImage = "https://picsum.photos/128/128";
 
 export default function CheckpointDashboard() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasCameraPermission, setHasCameraPermission] = useState(false);
   const { toast } = useToast();
+  const [scanning, setScanning] = useState(false);
+  const [visitorInfo, setVisitorInfo] = useState(null);
 
   useEffect(() => {
     const getCameraPermission = async () => {
@@ -36,6 +41,24 @@ export default function CheckpointDashboard() {
     getCameraPermission();
   }, []);
 
+  const handleScan = async () => {
+    setScanning(true);
+    setVisitorInfo(null); // Clear previous visitor info
+
+    // Simulate scanning for 3 seconds
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+    setScanning(false);
+
+    // Mock visitor information after scanning
+    setVisitorInfo({
+      name: "John Doe",
+      id: "123456789",
+      purpose: "Meeting",
+      validUntil: "April 30, 2024",
+    });
+  };
+
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
@@ -57,7 +80,33 @@ export default function CheckpointDashboard() {
           )
           }
 
-          <Button variant="outline">Scan Code <Scan className="ml-2 h-4 w-4"/></Button>
+          <Button variant="outline" disabled={scanning} onClick={handleScan}>
+            {scanning ? "Scanning..." : "Scan Code"} <Scan className="ml-2 h-4 w-4"/>
+          </Button>
+
+          {visitorInfo && (
+            <Card className="mt-4">
+              <CardContent className="p-4">
+                <div className="flex items-center space-x-4">
+                  <Avatar>
+                    <AvatarImage src={placeholderImage} alt="Visitor Image" />
+                    <AvatarFallback>JD</AvatarFallback>
+                  </Avatar>
+                  <div>
+                    <p>Name: {visitorInfo.name}</p>
+                    <p>ID: {visitorInfo.id}</p>
+                    <p>Purpose: {visitorInfo.purpose}</p>
+                    <p>Valid Until: {visitorInfo.validUntil}</p>
+                  </div>
+                </div>
+                <div className="mt-4 flex justify-end space-x-2">
+                  <Button variant="primary">Grant Access <Icons.check className="ml-2 h-4 w-4" /></Button>
+                  <Button variant="destructive">Deny Access <Icons.close className="ml-2 h-4 w-4"/></Button>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+
           {/* Add components for displaying visitor info and granting/denying access */}
         </CardContent>
       </Card>
