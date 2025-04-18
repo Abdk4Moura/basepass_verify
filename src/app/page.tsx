@@ -12,7 +12,7 @@ export default function Home() {
           <p>
             This system is designed to replace insecure, inefficient, and error-prone manual visitor logging systems.
           </p>
-          <p>
+          <div>
             Key Features:
             <ul>
               <li>Secure Code Generation</li>
@@ -21,10 +21,9 @@ export default function Home() {
               <li>Audit Trail</li>
               <li>User Management</li>
             </ul>
-          </p>
+          </div>
         </CardContent>
       </Card>
     </main>
   );
 }
-
