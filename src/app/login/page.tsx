@@ -62,7 +62,7 @@ export default function LoginPage() {
           </div>
 
           {/* Sign In Button */}
-          <Button onClick={handleLogin}>
+          <Button variant="outline" onClick={handleLogin}>
             Sign In <Icons.shield className="ml-2 h-4 w-4" />
           </Button>
         </CardContent>
@@ -70,3 +70,4 @@ export default function LoginPage() {
     </div>
   );
 }
+

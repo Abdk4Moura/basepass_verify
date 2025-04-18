@@ -56,7 +56,7 @@ export default function CheckpointDashboard() {
           )
           }
 
-          <Button>Scan Code <Icons.search className="ml-2 h-4 w-4"/></Button>
+          <Button variant="outline">Scan Code <Icons.scan className="ml-2 h-4 w-4"/></Button>
           {/* Add components for displaying visitor info and granting/denying access */}
         </CardContent>
       </Card>
