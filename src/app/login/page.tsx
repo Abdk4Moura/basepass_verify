@@ -15,28 +15,20 @@ export default function LoginPage() {
   const router = useRouter();
 
   const handleLogin = () => {
-    // Mock authentication logic: test@example.com/password
-    if (username === "test@example.com" && password === "password") {
-      // Determine the role based on some mock logic (can be extended later)
-      let profile;
-      if (username.startsWith("sponsor")) {
-        profile = SponsorProfile;
-      } else if (username.startsWith("checkpoint")) {
-        profile = CheckpointProfile;
-      } else {
-        profile = AdminProfile;
-      }
+    let profile = null;
 
-      // Redirect to the appropriate dashboard based on profile/role
-      if (profile === SponsorProfile) {
-        router.push(`/sponsor/dashboard`);
-      } else if (profile === CheckpointProfile) {
-        router.push(`/checkpoint/dashboard`);
-      } else {
-        router.push(`/admin/dashboard`);
-      }
+    if (username === "test-sponsor@example.com" && password === "password") {
+      profile = SponsorProfile;
+      router.push(`/sponsor/dashboard`);
+    } else if (username === "test-checkpoint@example.com" && password === "password") {
+      profile = CheckpointProfile;
+      router.push(`/checkpoint/dashboard`);
+    } else if (username === "test-admin@example.com" && password === "password") {
+      profile = AdminProfile;
+      router.push(`/admin/dashboard`);
     } else {
       alert("Invalid credentials");
+      return;
     }
   };
 
