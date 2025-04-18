@@ -6,34 +6,35 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from 'next/navigation';
 import { Icons } from "@/components/icons";
-
-type Role = "sponsor" | "checkpoint" | "admin";
+import { SponsorProfile, CheckpointProfile, AdminProfile } from "@/lib/mock-profiles"; // Import mock profiles
 
 export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState<Role>("sponsor"); // Default role
 
   const router = useRouter();
 
   const handleLogin = () => {
-    // Mock authentication logic
-    let valid = false;
-    switch (role) {
-      case "sponsor":
-        valid = username === "sponsor" && password === "password";
-        break;
-      case "checkpoint":
-        valid = username === "checkpoint" && password === "password";
-        break;
-      case "admin":
-        valid = username === "admin" && password === "password";
-        break;
-    }
+    // Mock authentication logic: test@example.com/password
+    if (username === "test@example.com" && password === "password") {
+      // Determine the role based on some mock logic (can be extended later)
+      let profile;
+      if (username.startsWith("sponsor")) {
+        profile = SponsorProfile;
+      } else if (username.startsWith("checkpoint")) {
+        profile = CheckpointProfile;
+      } else {
+        profile = AdminProfile;
+      }
 
-    if (valid) {
-      // Redirect to the appropriate dashboard based on role
-      router.push(`/${role}/dashboard`);
+      // Redirect to the appropriate dashboard based on profile/role
+      if (profile === SponsorProfile) {
+        router.push(`/sponsor/dashboard`);
+      } else if (profile === CheckpointProfile) {
+        router.push(`/checkpoint/dashboard`);
+      } else {
+        router.push(`/admin/dashboard`);
+      }
     } else {
       alert("Invalid credentials");
     }
@@ -46,20 +47,6 @@ export default function LoginPage() {
           <CardTitle>Login</CardTitle>
         </CardHeader>
         <CardContent className="grid gap-4">
-
-          {/* Role Toggle Buttons */}
-          <div className="flex justify-around">
-            <Button variant={role === "sponsor" ? "default" : "outline"} onClick={() => setRole("sponsor")}>
-              Sponsor
-            </Button>
-            <Button variant={role === "checkpoint" ? "default" : "outline"} onClick={() => setRole("checkpoint")}>
-              Checkpoint
-            </Button>
-            <Button variant={role === "admin" ? "default" : "outline"} onClick={() => setRole("admin")}>
-              Admin
-            </Button>
-          </div>
-
           {/* Username and Password Input */}
           <div className="grid gap-2">
             <label htmlFor="username">Username</label>
