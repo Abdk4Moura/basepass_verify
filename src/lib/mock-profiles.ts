@@ -20,4 +20,3 @@ export const AdminProfile = {
   role: "admin",
   email: "admin@example.com",
 };
-"
