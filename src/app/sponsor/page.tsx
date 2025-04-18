@@ -1,0 +1,59 @@
+"use client";
+
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { useState } from "react";
+import { useRouter } from 'next/navigation';
+import { Icons } from "@/components/icons";
+
+export default function SponsorPage() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleLogin = () => {
+    // TODO: Implement actual authentication logic
+    if (username === "sponsor" && password === "password") {
+      // Redirect to sponsor dashboard after successful login
+      router.push('/sponsor/dashboard');
+    } else {
+      alert("Invalid credentials");
+    }
+  };
+
+  return (
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Sponsor Login</CardTitle>
+        </CardHeader>
+        <CardContent className="grid gap-4">
+          <div className="grid gap-2">
+            <label htmlFor="username">Username</label>
+            <Input
+              type="text"
+              id="username"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="grid gap-2">
+            <label htmlFor="password">Password</label>
+            <Input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Button onClick={handleLogin}>
+            Sign In <Icons.shield className="ml-2 h-4 w-4"/>
+          </Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
