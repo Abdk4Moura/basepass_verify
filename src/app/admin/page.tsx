@@ -10,5 +10,5 @@ export default function AdminPage() {
     router.push('/login');
   }, [router]);
 
-  return null; // Render nothing, just redirect
+  return null;
 }
