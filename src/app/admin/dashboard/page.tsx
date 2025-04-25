@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Icons } from "@/components/icons";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import { UserPlus, Download, Save } from "lucide-react";
 
 export default function AdminDashboard() {
   const [userSearchTerm, setUserSearchTerm] = useState("");
@@ -47,7 +48,7 @@ export default function AdminDashboard() {
             </div>
             {/* User list or management UI would go here */}
             <p>User management interface goes here (e.g., add, delete, modify roles).</p>
-            <Button variant="outline">Add User <Icons.userPlus className="ml-2 h-4 w-4" /></Button>
+            <Button variant="outline">Add User <UserPlus className="ml-2 h-4 w-4" /></Button>
           </section>
 
           {/* View Logs Section */}
@@ -60,7 +61,7 @@ export default function AdminDashboard() {
                   </li>
                 ))}
               </ul>
-            <Button variant="outline">Download Logs <Icons.download className="ml-2 h-4 w-4" /></Button>
+            <Button variant="outline">Download Logs <Download className="ml-2 h-4 w-4" /></Button>
           </section>
 
           {/* Update Settings Section */}
@@ -82,7 +83,7 @@ export default function AdminDashboard() {
                 onChange={(e) => setSettings({ ...settings, maxCodeAge: parseInt(e.target.value) })}
               />
             </label>
-            <Button variant="outline">Save Settings <Icons.save className="ml-2 h-4 w-4" /></Button>
+            <Button variant="outline">Save Settings <Save className="ml-2 h-4 w-4" /></Button>
           </section>
         </CardContent>
       </Card>
