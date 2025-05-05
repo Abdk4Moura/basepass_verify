@@ -48,7 +48,7 @@ export default function Home() {
           <CardContent className="p-4">
             <div className="flex items-center space-x-4">
               <Avatar>
-                <AvatarImage src={placeholderImage} alt="Visitor Image"/>
+                <AvatarImage src={placeholderImage} alt="Visitor Image" data-ai-hint="visitor portrait"/>
                 <AvatarFallback>JD</AvatarFallback>
               </Avatar>
               <div>
@@ -67,7 +67,7 @@ export default function Home() {
           </CardHeader>
           <div className="flex space-x-2">
             <Input type="text" placeholder="Enter code" className="flex-grow"/>
-            <Button>SUBMIT</Button>
+            <Button variant="outline">SUBMIT</Button>
           </div>
         </section>
 
