@@ -1,4 +1,4 @@
-export type UserRole = "sponsor" | "checkpoint_personnel" | "vehicle_dispatcher" | "admin";
+export type UserRole = "sponsor" | "checkpoint_personnel" | "vehicle_dispatcher" | "admin" | "driver";
 export type VisitStatus = "pending_verification" | "verified_at_checkpoint" | "vehicle_requested" | "vehicle_assigned" | "en_route_with_vehicle" | "destination_reached" | "expired" | "cancelled";
 export type VehicleStatus = "available" | "assigned" | "en_route" | "maintenance" | "unavailable";
 export type VehicleTripStatus = "pending_assignment" | "assigned" | "en_route" | "completed" | "cancelled";

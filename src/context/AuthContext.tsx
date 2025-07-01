@@ -85,14 +85,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         // setIsLoading(false); // Loading state set in fetchUser
     };
 
-    const logout = () => {
-        // console.log("AuthProvider: Logging out");
+    const logout = (redirect = true) => {
         removeToken();
         setToken(null);
         setUser(null);
-        // Redirect to login page
-        if (typeof window !== 'undefined') {
-            // Avoid using router here if it causes issues during logout/redirect loops
+        if (redirect && typeof window !== 'undefined') {
             window.location.href = '/login';
         }
     };
